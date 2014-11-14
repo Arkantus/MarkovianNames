@@ -1,16 +1,14 @@
-#COPYRIGHT TOUTE COPIE COUTE 10000€ (ET VOTRE AME)
-
 require 'sqlite3'
 
 
 class MarkovGenerator
-	def initialize(corpus = "names.db",deepness = 4, unique = false )
+	def initialize(corpus = "names.db",deepness = 2, unique = false )
 		Random.new_seed 
 		@unique = unique
 		corpus = "names.db"
 		puts "file not found!" if not File.exist?(corpus)
 		db = SQLite3::Database.new corpus
-		stm = db.prepare "SELECT Names.Value FROM Names JOIN Orign ON Names.Value = Orign.Value WHERE Pays LIKE '%french%' AND Female <= 0 AND Male > 0"
+		stm = db.prepare "SELECT Names.Value FROM Names JOIN Orign ON Names.Value = Orign.Value WHERE Pays LIKE '%greek%' AND Female <= 0 AND Male > 0"
 		rs = stm.execute
 		@names = []
 		rs.each do |row|
